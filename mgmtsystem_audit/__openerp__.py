@@ -19,32 +19,29 @@
 #
 ##############################################################################
 {
-    "name": "Management System - Action",
+    "name": "Management System - Audit",
     "version": "1.2",
     "author": "Savoir-faire Linux,Odoo Community Association (OCA)",
     "website": "http://www.savoirfairelinux.com",
     "license": "AGPL-3",
     "category": "Management System",
     "description": """\
-This module enables you to manage the different actions of your management
-system:
-  * immediate actions
-  * corrective actions
-  * preventive actions
-  * improvement opportunities.
-""",
-    "depends": ['mgmtsystem', 'crm_claim'],
+This module enables you to manage audits and verifications lists of your
+management system.
+    """,
+    "depends": ['mgmtsystem_nonconformity'],
     "data": [
-        'data/mgmtsystem_action_stage.xml',
         'security/ir.model.access.csv',
-        'security/mgmtsystem_action_security.xml',
-        'action_sequence.xml',
-        'workflow_mgmtsystem_action.xml',
-        'views/menus.xml',
-        'mgmtsystem_action.xml',
-        'views/mgmtsystem_action_stage.xml',
-        'board_mgmtsystem_action.xml',
+        'security/mgmtsystem_audit_security.xml',
+        'audit_sequence.xml',
+        'mgmtsystem_audit.xml',
+        'report/audit_report.xml',
+        'report/verification_list.xml',
+        'board_mgmtsystem_audit.xml',
+        'wizard/copy_verification_lines.xml',
     ],
-    "demo": ['demo_action.xml'],
-    "installable": True,
+    "demo": [
+        'demo_audit.xml',
+    ],
+    'installable': True,
 }

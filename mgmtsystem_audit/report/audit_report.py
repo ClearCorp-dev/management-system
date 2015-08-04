@@ -18,33 +18,23 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{
-    "name": "Management System - Action",
-    "version": "1.2",
-    "author": "Savoir-faire Linux,Odoo Community Association (OCA)",
-    "website": "http://www.savoirfairelinux.com",
-    "license": "AGPL-3",
-    "category": "Management System",
-    "description": """\
-This module enables you to manage the different actions of your management
-system:
-  * immediate actions
-  * corrective actions
-  * preventive actions
-  * improvement opportunities.
-""",
-    "depends": ['mgmtsystem', 'crm_claim'],
-    "data": [
-        'data/mgmtsystem_action_stage.xml',
-        'security/ir.model.access.csv',
-        'security/mgmtsystem_action_security.xml',
-        'action_sequence.xml',
-        'workflow_mgmtsystem_action.xml',
-        'views/menus.xml',
-        'mgmtsystem_action.xml',
-        'views/mgmtsystem_action_stage.xml',
-        'board_mgmtsystem_action.xml',
-    ],
-    "demo": ['demo_action.xml'],
-    "installable": True,
-}
+
+import time
+from openerp.report import report_sxw
+
+
+class mgmtsystem_audit_report(report_sxw.rml_parse):
+
+    def __init__(self, cr, uid, name, context):
+        super(mgmtsystem_audit_report, self).__init__(cr, uid, name, context)
+        self.localcontext.update({
+            'time': time,
+        })
+
+report_sxw.report_sxw(
+    'report.mgmtsystem.audit.report',
+    'mgmtsystem.audit',
+    'addons/mgmtsystem_audit/report/audit_report.rml',
+    parser=mgmtsystem_audit_report
+)
+

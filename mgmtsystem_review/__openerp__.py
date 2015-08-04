@@ -19,32 +19,26 @@
 #
 ##############################################################################
 {
-    "name": "Management System - Action",
-    "version": "1.2",
+    "name": "Management System - Review",
+    "version": "1.0",
     "author": "Savoir-faire Linux,Odoo Community Association (OCA)",
     "website": "http://www.savoirfairelinux.com",
     "license": "AGPL-3",
     "category": "Management System",
     "description": """\
-This module enables you to manage the different actions of your management
-system:
-  * immediate actions
-  * corrective actions
-  * preventive actions
-  * improvement opportunities.
-""",
-    "depends": ['mgmtsystem', 'crm_claim'],
-    "data": [
-        'data/mgmtsystem_action_stage.xml',
-        'security/ir.model.access.csv',
-        'security/mgmtsystem_action_security.xml',
-        'action_sequence.xml',
-        'workflow_mgmtsystem_action.xml',
-        'views/menus.xml',
-        'mgmtsystem_action.xml',
-        'views/mgmtsystem_action_stage.xml',
-        'board_mgmtsystem_action.xml',
+This module enables you to manage reviews of your management system.
+    """,
+    "depends": [
+        'mgmtsystem_nonconformity',
+        'mgmtsystem_survey',
     ],
-    "demo": ['demo_action.xml'],
-    "installable": True,
+    "data": [
+        'security/ir.model.access.csv',
+        'security/mgmtsystem_review_security.xml',
+        'data/ir_sequence.xml',
+        'views/mgmtsystem_review.xml',
+        'report/review_report.xml',
+    ],
+    "demo": [],
+    'installable': True,
 }
